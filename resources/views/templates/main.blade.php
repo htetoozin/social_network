@@ -8,6 +8,7 @@
 <body>
 		@include('templates.partials.nav')
 	<div class="container">
+		@include('templates.partials.alert')
 		@yield('content')
 	</div>
 </body>

@@ -11,7 +11,19 @@
 |
 */
 
+/*
+* Authnetication 
+*/
+Route::get('/signup', 'AuthController@getSignUp')->name('auth.signup');
+Route::post('/signup', 'AuthController@postSignUp');
 
-Route::get('/', 'HomeController@index');
+Route::get('/signin', 'AuthController@getSignIn')->name('auth.signin');
+Route::post('/signin', 'AuthController@postSignIn');
 
+
+
+/*
+* Application Route
+*/
+Route::get('/', 'HomeController@index')->name('home');
 
