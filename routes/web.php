@@ -14,11 +14,18 @@
 /*
 * Authnetication 
 */
-Route::get('/signup', 'AuthController@getSignUp')->name('auth.signup');
-Route::post('/signup', 'AuthController@postSignUp');
 
-Route::get('/signin', 'AuthController@getSignIn')->name('auth.signin');
-Route::post('/signin', 'AuthController@postSignIn');
+Route::group(['middleware' => 'guest'], function(){
+	Route::get('/signup', 'AuthController@getSignUp')->name('auth.signup');
+	Route::post('/signup', 'AuthController@postSignUp');
+
+	Route::get('/signin', 'AuthController@getSignIn')->name('auth.signin');
+	Route::post('/signin', 'AuthController@postSignIn');
+
+});
+
+Route::get('/signout', 'AuthController@getSignOut')->name('auth.signout');
+
 
 
 
@@ -26,4 +33,5 @@ Route::post('/signin', 'AuthController@postSignIn');
 * Application Route
 */
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/search', 'SearchController@getResults')->name('search.results');
 

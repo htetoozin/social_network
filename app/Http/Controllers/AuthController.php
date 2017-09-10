@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
+	
     public function getSignUp()
     {
     	return view('auth.signup');	
@@ -39,6 +41,14 @@ class AuthController extends Controller
     	}
 
     	return redirect()->route('home')->with('info', 'You are now signed in.');
+    }
+
+    public function getSignOut()
+    {
+    	auth()->logout();
+
+
+    	return redirect()->route('home');	
     }
 }
 

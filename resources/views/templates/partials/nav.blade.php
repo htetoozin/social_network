@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Chatty</a>
+      <a class="navbar-brand" href="{{ route('home') }}">Chatty</a>
     </div>
       
       @if(Auth::check())
@@ -17,7 +17,7 @@
            <li><a href="#">Friends</a></li>
          </ul>
 
-         <form class="navbar-form navbar-left" role="search" action="#">
+         <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
            <div class="form-group">
              <input type="text" name="query" class="form-control" placeholder="Find People">
            </div>
@@ -29,7 +29,7 @@
         @if(Auth::check())
           <li><a href="#">{{ Auth::user()->getNameOrUsername() }}</a></li>
           <li><a href="#">Update Profile</a></li>
-          <li><a href="#">Sign Out</a></li>
+          <li><a href="{{ route('auth.signout') }}">Sign Out</a></li>
         @else
           <li><a href="{{ route('auth.signup') }}">Sign Up</a></li>
           <li><a href="{{ route('auth.signin') }}">Sign In</a></li>
