@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->first_name ?: $this->username;    
     }
+
+    public function getAvatorUrl()
+    {
+        return "https://www.gravator.com/avator/{{ md5($this->email) }}";    
+    }
 }
