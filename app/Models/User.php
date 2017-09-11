@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function getAvatorUrl()
     {
-        return "https://www.gravator.com/avator/{{ md5($this->email) }}";    
+        return "https://www.gravatar.com/avatar/{{ md5($this->email) }}?d=mm&s=40";    
     }
 }

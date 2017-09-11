@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
 
+    public function __construt()
+    {
+        $this->middleware('auth');    
+    }
 	
     public function getSignUp()
     {
