@@ -40,3 +40,6 @@ Route::get('/user/{username}', 'ProfileController@getProfile')->name('profile.in
 Route::get('/profile/edit', 'ProfileController@getEdit')->name('profile.edit');
 Route::post('/profile/edit', 'ProfileController@postEdit');
 
+
+Route::get('/friends', 'FriendController@getIndex')->name('friend.index');
+
