@@ -42,4 +42,5 @@ Route::post('/profile/edit', 'ProfileController@postEdit');
 
 
 Route::get('/friends', 'FriendController@getIndex')->name('friend.index');
+Route::get('/friends/add/{username}', 'FriendController@getAdd')->name('friend.add');
 
