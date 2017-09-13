@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->getName() ?: $this->username;
     }
 
-    public function firstNameOrUsername()
+    public function getfirstNameOrUsername()
     {
         return $this->first_name ?: $this->username;    
     }
@@ -55,6 +55,11 @@ class User extends Authenticatable
     public function getAvatorUrl()
     {
         return "https://www.gravatar.com/avatar/{{ md5($this->email) }}?d=mm&s=40";    
+    }
+
+    public function statuses()
+    {
+        return $this->hasMany('App\Models\Status', 'user_id');    
     }
 
     //Customize Relationships
