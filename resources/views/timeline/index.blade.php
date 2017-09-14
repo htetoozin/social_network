@@ -40,10 +40,14 @@
 							<li><a href="#">Like</a></li>
 							<li>10 Likes</li>
 						</ul>
-						<form role="form" action="#" method="POST">
+						<form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="POST">
 							{{ csrf_field() }}
-							<div class="form-group">
-								<textarea name="reply-1" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
+							<div class="form-group {{ $errors->has("reply-{$status->id}") ? 'has-error' : ''}}">
+								<textarea name="reply-{{ $status->id }}" class="form-control" rows="2" placeholder="Reply to this status"></textarea>
+
+								@if($errors->has("reply-{$status->id}"))
+									<span class="text text-danger">{{ $errors->first('reply-{$status->id}') }}</span>
+								@endif
 							</div>
 							<button class="btn btn-primary btn-sm">Reply</button>
 						</form>

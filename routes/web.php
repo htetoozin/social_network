@@ -47,4 +47,5 @@ Route::get('/friends/accept/{username}', 'FriendController@getAccept')->name('fr
 
 
 Route::post('/status', 'StatusController@postStatus')->name('status.post');
+Route::post('/status/{statusId}/reply', 'StatusController@postReply')->name('status.reply');
 

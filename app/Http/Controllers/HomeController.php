@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
     	if (auth()->check()) {
-    		$statuses = Status::where(function($query){
+    		$statuses = Status::notReply()->where(function($query){
     			return $query->where('user_id', auth()->user()->id)
     			->orWhereIn('user_id', auth()->user()->friends()->pluck('id'));
 
