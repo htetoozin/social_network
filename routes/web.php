@@ -44,6 +44,7 @@ Route::post('/profile/edit', 'ProfileController@postEdit');
 Route::get('/friends', 'FriendController@getIndex')->name('friend.index');
 Route::get('/friends/add/{username}', 'FriendController@getAdd')->name('friend.add');
 Route::get('/friends/accept/{username}', 'FriendController@getAccept')->name('friend.accept');
+Route::post('/friends/delete/{username}', 'FriendController@postDelete')->name('friend.delete');
 
 
 Route::post('/status', 'StatusController@postStatus')->name('status.post');

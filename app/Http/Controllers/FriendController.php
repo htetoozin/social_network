@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FriendController extends Controller
@@ -64,5 +65,21 @@ class FriendController extends Controller
     	auth()->user()->acceptFriendRequest($user);
 
     	return redirect()->route('profile.index', $username)->with('info', 'Friend Request Accepted');
+    }
+
+    public function postDelete($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        if (!auth()->user()->isFriendWith($user)) {
+            return redirect()->back();
+        }
+
+        auth()->user()->deleteFriend($user);
+
+
+        return redirect()->back()->with('info', 'Friend Delete.');
+
+
     }
 }
