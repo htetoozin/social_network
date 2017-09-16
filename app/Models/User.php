@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Status;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -62,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Status', 'user_id');    
     }
 
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like', 'user_id');    
+    }
+
     //Customize Relationships
     public function friendsOfMine()
     {
@@ -118,5 +124,14 @@ class User extends Authenticatable
     public function isFriendWith(User $user)
     {
         return (bool) $this->friends()->where('id', $user->id)->count();
+    }
+
+    public function hasLikedStatus(Status $status)
+    {
+        return (bool) $status->likes
+               ->where('likeable_id', $status->id)
+               ->where('likeable_type', get_class($status))
+               ->where('user_id', $this->id)
+               ->count(); 
     }
 }

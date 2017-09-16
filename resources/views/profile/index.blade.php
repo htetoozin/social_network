@@ -22,8 +22,6 @@
 						<p>{{ $status->body }}</p>
 						<ul class="list-inline">
 							<li>{{ $status->created_at->diffForHumans() }}</li>
-							<li><a href="#">Like</a></li>
-							<li>10 Likes</li>
 						</ul>
 
 						@foreach($status->replies as $reply)
@@ -38,14 +36,16 @@
 									<p>{{ $reply->body }}</p>
 									<ul class="list-inline">
 										<li>{{ $reply->created_at->diffForHumans() }}</li>
-										<li><a href="#">Likes</a></li>
-										<li>4 Likes</li>
+										@if($reply->user->id !== auth()->user()->id)
+											<li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Likes</a></li>
+											<li>4 Likes</li>
+										@endif	
 									</ul>
 								</div>
 							</div>
 						@endforeach
 
-						@if($authUserIsFriend || auth()->user()->id === $status->id)
+						@if($authUserIsFriend || auth()->user()->id === $status->user->id)
 							<form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="POST">
 								{{ csrf_field() }}
 								<div class="form-group {{ $errors->has("reply-{$status->id}") ? 'has-error' : ''}}">
