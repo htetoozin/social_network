@@ -22,6 +22,10 @@
 						<p>{{ $status->body }}</p>
 						<ul class="list-inline">
 							<li>{{ $status->created_at->diffForHumans() }}</li>
+							@if($status->user->id !== auth()->user()->id)
+								<li><a href="{{ route('status.like', ['statusId' => $status->id]) }}">Likes</a></li>
+							@endif	
+							<li>{{ $status->likes->count() }} {{ str_plural('like', $status->likes->count()) }}</li>
 						</ul>
 
 						@foreach($status->replies as $reply)
@@ -38,8 +42,8 @@
 										<li>{{ $reply->created_at->diffForHumans() }}</li>
 										@if($reply->user->id !== auth()->user()->id)
 											<li><a href="{{ route('status.like', ['statusId' => $reply->id]) }}">Likes</a></li>
-											<li>4 Likes</li>
-										@endif	
+										@endif
+										<li>{{ $reply->likes->count() }} {{ str_plural('like', $reply->likes->count()) }}</li>	
 									</ul>
 								</div>
 							</div>
